@@ -1,0 +1,19 @@
+Certified programming with dependent types
+
+
+Questions:
+
+  - Dependent types?
+  - Certifying program? (for batch mode softwares like compilers, where each run of the program outputs both an answer and a proof that the answer is correct)
+  - certifying program + proof checker = certified program
+  - HOL logic
+  - first order language
+  - programs inside of types??
+  - monomorphic lambda calculus
+  - de bruijn criterion
+  - proof terms (in small kernel languages)
+  - kernel proof language
+
+
+- video gallery 
+Programs check that our programs are correct (Formal program verification)

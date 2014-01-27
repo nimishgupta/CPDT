@@ -13,7 +13,21 @@ Questions:
   - de bruijn criterion
   - proof terms (in small kernel languages)
   - kernel proof language
+  - subset types
+  - decision procedures
+  - proof by reflection
+  - refinement types
+  - tactic based theorem proving
+  - decidability (Complexity theory)
+  - principle types
+  - strong normalization
+  - relative consistency
+  - Zermelo-Fraenkel set theory 
+  - strengthening induction hypothesis
 
 
-- video gallery 
 Programs check that our programs are correct (Formal program verification)
+
+Dependent Types
+Types can contain program that checks properties (Example type of an array might include a program to check out of bounds error)
+They capture correctness property in a type

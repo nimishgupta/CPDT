@@ -31,6 +31,21 @@ Definition typeDenote (t: type) : Set :=
     | Bool => bool
   end.
 
+Print lt.
+Print gt.
+Print eqb.
+Print leb.
+Print plus.
+
+
+
+Fixpoint my_lt (m n: nat) : bool :=
+  match m, n with
+    | O, O => true
+    | O, _ => false
+    | _, O => false
+    | S m', S n' => my_lt m' n'
+  end.
 
 
 (* XXX: Why it has been written like this??
@@ -44,12 +59,13 @@ Definition typeDenote (t: type) : Set :=
  *)
 Definition tbinopDenote arg1 arg2 res (b: tbinop arg1 arg2 res)
   : typeDenote arg1 -> typeDenote arg2 -> typeDenote res :=
-  match b with
+  match b in tbinop arg1 arg2 res 
+    return typeDenote arg1 -> typeDenote arg2 -> typeDenote res with
     | TPlus => plus
     | TTimes => mult
     | TEq Nat => beq_nat
     | TEq Bool => eqb
-    | TLt => leb
+    | TLt => my_lt
   end.
 
 
@@ -91,7 +107,7 @@ Inductive tprog: tstack -> tstack -> Set :=
 Fixpoint vstack (ts: tstack): Set := 
   match ts with
     | nil => unit
-    | t :: ts' => typeDenote t x vstack ts'
+    | t :: ts' => typeDenote t * vstack ts'
   end%type.
 
 
@@ -127,4 +143,7 @@ Fixpoint tcompile t (e: texp t) (ts: tstack) : tprog ts (t :: ts) :=
   end.
 
 Eval simpl in tprogDenote (tcompile (TNConst 42) nil) tt.
-Eval simpl in tprogDenote (tcompile (TBCosnt true) nil) tt.
+Eval simpl in tprogDenote (tcompile (TBConst true) nil) tt.
+
+
+
